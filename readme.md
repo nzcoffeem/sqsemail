@@ -1,5 +1,5 @@
 #### Building
-- In pendula run 
+- In the root run 
 ```./gradlew clean build```
 
 #### Running

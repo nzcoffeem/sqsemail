@@ -32,7 +32,7 @@ class CustomerController(
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
     @ResponseStatus(HttpStatus.ACCEPTED)
-    fun newCustomer(@RequestBody(required = true) event: Customer) {
-        applicationEventPublisher.publishEvent(event.toNewCustomerEvent())
+    fun newCustomer(@RequestBody(required = true) newCustomerEvent: Customer) {
+        applicationEventPublisher.publishEvent(newCustomerEvent.toNewCustomerEvent())
     }
 }

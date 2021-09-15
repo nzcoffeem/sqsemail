@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.ByteArrayOutputStream
 
 plugins {
 	id("org.springframework.boot") version "2.5.4"
@@ -8,8 +9,17 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.21"
 }
 
+val gitDescribe: String by lazy {
+	val stdout = ByteArrayOutputStream()
+	rootProject.exec {
+		commandLine("git", "rev-parse", "--short", "HEAD")
+		standardOutput = stdout
+	}
+	stdout.toString().trim()
+}
+
 group = "com.pendula"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1-SNAPSHOT.$gitDescribe"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -36,4 +46,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.getByName<Jar>("jar") {
+	enabled = false
 }

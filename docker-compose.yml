@@ -1,0 +1,27 @@
+version: '3'
+services:
+  crm:
+    build: ./pendula-crm/
+    restart: on-failure
+    links:
+      - queue
+    ports:
+      - 8080:8080
+  emailer:
+    build: ./pendula-emailer/
+    restart: on-failure
+    links:
+      - queue
+      - mail
+  queue:
+    build: ./queue/
+    ports:
+      - 9325:9325
+    expose:
+      - 9324
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
+    expose:
+      - 1025

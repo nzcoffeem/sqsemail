@@ -1,0 +1,20 @@
+cloud:
+  aws:
+    endpoint:
+      uri: http://queue:9324
+      queue: customerqueue
+    region:
+      static: elasticmq
+    credentials:
+      accessKey: x
+      secretKey: x
+
+spring.mail:
+  host: mail
+  port: 1025
+  smtp:
+    auth: false
+    starttls:
+      enable: true
+
+server.port: 8081

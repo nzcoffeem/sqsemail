@@ -1,0 +1,10 @@
+cloud:
+  aws:
+    endpoint:
+      uri: http://queue:9324
+      queue: customerqueue
+    region:
+      static: elasticmq
+    credentials:
+      accessKey: x
+      secretKey: x
